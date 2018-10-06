@@ -4,7 +4,9 @@ class Form extends Component {
   state = {
     creditCard: "",
     cvc: "",
-    expiry: ""
+    expiry: "",
+    month: "",
+    year: ""
   };
 
   handleCreditCardChange = event => {
@@ -21,11 +23,34 @@ class Form extends Component {
     this.setState({ cvc });
   };
 
+  /**
+   * Parses the input string, splitting month and date.
+   * Gets current month and date.
+   * If month and date are valid, and before current month / date, save state.
+   */
   handleExpiryChange = event => {
     const expiry = event.target.validity.valid
       ? event.target.value
       : this.state.expiry;
     this.setState({ expiry });
+
+    if (this.state.expiry.length === 4) {
+      const month = expiry.substr(0, 2);
+      const year = expiry.substr(3, 4);
+
+      let date = new Date();
+      let currentYear = date
+        .getFullYear()
+        .toString()
+        .substring(2, 4);
+      let currentMonth = date.getMonth() + 1;
+      if (
+        (month <= 12 && (year >= 12 && year < currentYear)) ||
+        (year === currentYear && month < currentMonth)
+      ) {
+        this.setState({ month: month, year: year });
+      }
+    }
   };
 
   clearCreditCardText = () => {
@@ -35,7 +60,7 @@ class Form extends Component {
     this.setState({ cvc: "" });
   };
   clearExpiryText = () => {
-    this.setState({ expiry: "" });
+    this.setState({ expiry: "", year: "", month: "" });
   };
 
   submitValues = () => {
@@ -50,9 +75,8 @@ class Form extends Component {
   };
 
   render() {
-    const { creditCard, cvc, expiry } = this.state;
-    const isEnabled =
-      creditCard.length > 16 && cvc.length > 2 && expiry.length > 3;
+    const { creditCard, cvc, year } = this.state;
+    const isEnabled = creditCard.length > 16 && cvc.length > 2 && year;
 
     return (
       <React.Fragment>
@@ -85,7 +109,7 @@ class Form extends Component {
               <input
                 id="expiry"
                 type="text"
-                pattern="[0-9]*"
+                pattern="[\\/0-9]*"
                 placeholder="expiry"
                 style={{ width: "150px" }}
                 onInput={this.handleExpiryChange.bind(this)}
