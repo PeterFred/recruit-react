@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import RegisterCard from "./components/registerCard";
-import Menu from "./components/menu";
+import RegisterCardHeader from "./components/registerCardHeader";
+import MenuHeader from "./components/menuHeader";
+import MenuContent from "./components/menuContent";
+import RegisterContent from "./components/registerContent";
 import Form from "./components/form";
 
 class App extends Component {
@@ -24,9 +26,14 @@ class App extends Component {
             <button type="button" onClick={event => this.handleToggle(event)}>
               Burger Icon
             </button>
-            {this.state.displayMenu === false && <RegisterCard />}
-            {this.state.displayMenu === true && <Menu />}
+            {this.state.displayMenu === false && <RegisterCardHeader />}
+            {this.state.displayMenu === true && <MenuHeader />}
           </div>
+          <div>
+            {this.state.displayMenu === false && <RegisterContent />}
+            {this.state.displayMenu === true && <MenuContent />}
+          </div>
+
           <div className="Form">
             <Form />
           </div>
