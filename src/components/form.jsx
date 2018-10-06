@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
 class Form extends Component {
-  constructor() {
-    super();
-    this.state = {
-      creditCard: "",
-      cvc: "",
-      expiry: ""
-    };
-  }
+  //   constructor() {
+  //     super();
+  // this.
+  state = {
+    creditCard: "",
+    cvc: "",
+    expiry: ""
+  };
+  //   }
 
   handleCreditCardChange = event => {
     const creditCard = event.target.validity.valid
