@@ -119,10 +119,10 @@ class Form extends Component {
               />
             </div>
           </div>
+          <button disabled={!isEnabled} onClick={this.submitValues}>
+            Submit
+          </button>
         </div>
-        <button disabled={!isEnabled} onClick={this.submitValues}>
-          Submit
-        </button>
       </React.Fragment>
     );
   }
