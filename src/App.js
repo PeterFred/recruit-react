@@ -59,9 +59,7 @@ class App extends Component {
             {displayMenu === true && <MenuContent />}
           </div>
 
-          <div className="Form">
-            <Form />
-          </div>
+          <div className="Form">{displayMenu === false && <Form />}</div>
         </div>
       </React.Fragment>
     );
