@@ -44,8 +44,9 @@ class Form extends Component {
         .toString()
         .substring(2, 4);
       let currentMonth = date.getMonth() + 1;
+
       if (
-        (month <= 12 && (year >= 12 && year < currentYear)) ||
+        (month <= 12 && year > currentYear) ||
         (year === currentYear && month < currentMonth)
       ) {
         this.setState({ month: month, year: year });
@@ -76,7 +77,7 @@ class Form extends Component {
 
   render() {
     const { creditCard, cvc, year } = this.state;
-    const isEnabled = creditCard.length > 16 && cvc.length > 2 && year;
+    const isEnabled = creditCard.length > 15 && cvc.length > 2 && year;
 
     return (
       <React.Fragment>
