@@ -47,7 +47,7 @@ class Form extends Component {
 
       if (
         (month <= 12 && year > currentYear) ||
-        (year === currentYear && month < currentMonth)
+        (year === currentYear && month > currentMonth)
       ) {
         this.setState({ month: month, year: year });
       }
