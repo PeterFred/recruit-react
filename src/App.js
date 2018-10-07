@@ -8,6 +8,7 @@ import Form from "./components/form";
 //import HamburgerButton from "react-hamburger-button";
 import BurgerIcon from "./components/headers/burgerIcon";
 import "./apps.css";
+import ArrowIcon from "./components/headers/arrowIcon";
 
 class App extends Component {
   state = {
@@ -23,11 +24,11 @@ class App extends Component {
     });
   }
 
-  handleClick() {
-    this.setState({
-      open: !this.state.open
-    });
-  }
+  // handleClick() {
+  //   this.setState({
+  //     open: !this.state.open
+  //   });
+  // }
 
   handleBurger = () => {
     console.log("handleburger");
@@ -37,18 +38,25 @@ class App extends Component {
   };
 
   render() {
+    const { displayMenu } = this.state;
     return (
       <React.Fragment>
         <div className="container">
           <div className="navMenu">
-            <BurgerIcon className="burgerIcon" click={this.handleBurger} />
+            {displayMenu === false && (
+              <BurgerIcon className="icon" click={this.handleBurger} />
+            )}
 
-            {this.state.displayMenu === false && <RegisterCardHeader />}
-            {this.state.displayMenu === true && <MenuHeader />}
+            {displayMenu === true && (
+              <ArrowIcon className="icon" click={this.handleBurger} />
+            )}
+
+            {displayMenu === false && <RegisterCardHeader />}
+            {displayMenu === true && <MenuHeader />}
           </div>
           <div className="body">
-            {this.state.displayMenu === false && <RegisterContent />}
-            {this.state.displayMenu === true && <MenuContent />}
+            {displayMenu === false && <RegisterContent />}
+            {displayMenu === true && <MenuContent />}
           </div>
 
           <div className="Form">
