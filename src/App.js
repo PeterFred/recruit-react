@@ -5,33 +5,16 @@ import MenuHeader from "./components/headers/menuHeader";
 import MenuContent from "./components/menuContent";
 import RegisterContent from "./components/registerContent";
 import Form from "./components/form";
-//import HamburgerButton from "react-hamburger-button";
 import BurgerIcon from "./components/headers/burgerIcon";
 import "./apps.css";
 import ArrowIcon from "./components/headers/arrowIcon";
 
 class App extends Component {
   state = {
-    displayMenu: false,
-    open: false
+    displayMenu: false
   };
 
-  handleToggle(event) {
-    console.log("handleEvent");
-    event.preventDefault();
-    this.setState({
-      displayMenu: !this.state.displayMenu
-    });
-  }
-
-  // handleClick() {
-  //   this.setState({
-  //     open: !this.state.open
-  //   });
-  // }
-
   handleBurger = () => {
-    console.log("handleburger");
     this.setState(prevState => {
       return { displayMenu: !prevState.displayMenu };
     });
